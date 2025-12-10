@@ -1,89 +1,42 @@
-# LAB 2: RAG with Ollama
+# RAG Lab
 
-Build a Retrieval-Augmented Generation system using local LLMs.
+A simple question-answering system that reads your documents and answers questions about them.
 
 ## Setup
 
 ```bash
-# create venv
 python -m venv venv
 .\venv\Scripts\activate
-
-# install deps
 pip install -r requirements.txt
+```
 
-# make sure ollama is running with the embedding model
+You also need Ollama running locally:
+
+```bash
 ollama pull nomic-embed-text
 ollama pull llama3.2
 ```
 
-## Project Structure
+## How to use
 
-```
-LAB2-RAG/
-├── data/               # your documents go here
-├── src/                # RAG modules
-├── notebooks/          # jupyter lab
-├── chroma_db/          # vector store (auto-created)
-├── .env                # config
-└── requirements.txt
-```
-
-## Usage
-
-### Quick Start
+Put your PDFs or text files in the `data/` folder, then:
 
 ```python
 from src import RAGPipeline
 
 pipe = RAGPipeline()
-pipe.ingest()           # load and embed docs
-answer = pipe.ask("What is RAG?")
-print(answer)
+pipe.ingest()
+print(pipe.ask("your question here"))
 ```
 
-### Interactive Mode
-
-```bash
-python -m src.rag_pipeline
-```
-
-### Step by Step
-
-```python
-from src import load_documents, split_documents, VectorStore, RAGChain
-
-# load your docs
-docs = load_documents("data/")
-
-# chunk them
-chunks = split_documents(docs)
-
-# embed and store
-store = VectorStore()
-store.create_from_documents(chunks)
-
-# create the chain
-chain = RAGChain(store.as_retriever())
-
-# ask stuff
-print(chain.ask("What is machine learning?"))
-```
+Or run `python -m src.rag_pipeline` for interactive mode.
 
 ## Config
 
-Edit `.env` to change settings:
+Edit `.env` if you need different settings:
 
 ```
 OLLAMA_BASE_URL=http://127.0.0.1:11434
 OLLAMA_MODEL=llama3.2
 OLLAMA_EMBED_MODEL=nomic-embed-text
-CHUNK_SIZE=500
-CHUNK_OVERLAP=50
 ```
-
-## Notes
-
-- First run takes a bit since it creates embeddings
-- Embeddings are cached in `chroma_db/`
-- Add your own docs to `data/` folder (txt or pdf)

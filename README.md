@@ -12,23 +12,27 @@ Chat with your PDFs using a local LLM.
 1. Open a terminal in this folder
 
 2. Create a virtual environment and activate it:
+
    ```
    python -m venv venv
    .\venv\Scripts\activate
    ```
 
 3. Install the dependencies:
+
    ```
    pip install -r requirements.txt
    ```
 
 4. Pull the models (do this once):
+
    ```
    ollama pull llama3.2
    ollama pull nomic-embed-text
    ```
 
 5. Run the app:
+
    ```
    streamlit run app.py
    ```

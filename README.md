@@ -1,42 +1,54 @@
 # RAG Lab
 
-A simple question-answering system that reads your documents and answers questions about them.
+Chat with your PDFs using a local LLM.
 
-## Setup
+## What you need
 
-```bash
-python -m venv venv
-.\venv\Scripts\activate
-pip install -r requirements.txt
-```
+- Python 3.10+
+- Ollama installed and running
 
-You also need Ollama running locally:
+## Getting started
 
-```bash
-ollama pull nomic-embed-text
-ollama pull llama3.2
-```
+1. Open a terminal in this folder
 
-## How to use
+2. Create a virtual environment and activate it:
+   ```
+   python -m venv venv
+   .\venv\Scripts\activate
+   ```
 
-Put your PDFs or text files in the `data/` folder, then:
+3. Install the dependencies:
+   ```
+   pip install -r requirements.txt
+   ```
+
+4. Pull the models (do this once):
+   ```
+   ollama pull llama3.2
+   ollama pull nomic-embed-text
+   ```
+
+5. Run the app:
+   ```
+   streamlit run app.py
+   ```
+
+6. Upload a PDF in the sidebar, click Process, then start asking questions.
+
+## Alternative: command line
+
+If you don't want the web interface:
 
 ```python
 from src import RAGPipeline
 
 pipe = RAGPipeline()
 pipe.ingest()
-print(pipe.ask("your question here"))
+pipe.ask("what is this document about?")
 ```
 
-Or run `python -m src.rag_pipeline` for interactive mode.
+## Troubleshooting
 
-## Config
-
-Edit `.env` if you need different settings:
-
-```
-OLLAMA_BASE_URL=http://127.0.0.1:11434
-OLLAMA_MODEL=llama3.2
-OLLAMA_EMBED_MODEL=nomic-embed-text
-```
+- Make sure Ollama is running before you start the app
+- If embeddings are slow, just wait - first run takes a minute
+- Check that your PDF isn't scanned images (needs actual text)

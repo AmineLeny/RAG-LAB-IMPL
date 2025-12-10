@@ -1,0 +1,71 @@
+# Virtual environment
+rag-lab/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Environment variables and sensitive data
+.env
+.env.local
+.env.*
+*.key
+*.pem
+secrets/
+config/secrets.*
+
+# API keys and credentials
+*.json
+!package.json
+!requirements.json
+credentials/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+.Spotlight-V100
+.Trashes
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite3
+chroma_db/
+chromadb/
+.chroma/
+vector_store/
+vectordb/
+faiss_index/
+*.faiss
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+.cache/

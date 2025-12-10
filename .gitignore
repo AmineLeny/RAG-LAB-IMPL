@@ -10,7 +10,6 @@ __pycache__/
 # Environment variables and sensitive data
 .env
 .env.local
-.env.*
 *.key
 *.pem
 secrets/
